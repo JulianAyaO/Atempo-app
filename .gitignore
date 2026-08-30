@@ -1,0 +1,39 @@
+# Java
+*.class
+*.jar
+*.war
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!backend/.mvn/wrapper/maven-wrapper.jar
+
+# Embedded Maven (download locally via mvnw if needed)
+backend/tools/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+.expo/
+dist/
+*.log
+npm-debug.log*
+
+# Environment
+.env
+*.env.local
+
+# Uploads / runtime data
+uploads/
+
+# Local notes (not published)
+docs/

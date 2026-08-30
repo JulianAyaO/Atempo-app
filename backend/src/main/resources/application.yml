@@ -1,0 +1,85 @@
+server:
+  port: ${SERVER_PORT:8080}
+  address: 0.0.0.0
+
+spring:
+  profiles:
+    default: dev
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:15432}/${DB_NAME:restaurant}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:postgres123}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 20000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  threads:
+    virtual:
+      enabled: true
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# --- Configuración de la aplicación ---
+app:
+  jwt:
+    secret: ${JWT_SECRET:clave-secreta-restaurante-2024-muy-larga-y-segura-para-produccion}
+    expiration-ms: 86400000  # 24 horas
+
+  openai:
+    api-key: ${OLLAMA_API_KEY:ollama}  # no se usa con Ollama local
+    chat-model: ${OLLAMA_CHAT_MODEL:llama3.2:3b}
+    embedding-model: ${OLLAMA_EMBEDDING_MODEL:nomic-embed-text}
+    embedding-dimensions: 768
+    base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+    max-tokens: 800
+    temperature: 0.2
+
+  uploads:
+    dir: ${UPLOADS_DIR:uploads}
+
+  conversation:
+    max-history-turns: 12
+    max-rag-results: 3
+
+logging:
+  level:
+    com.restaurant: INFO
+    org.springframework.web.socket: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized

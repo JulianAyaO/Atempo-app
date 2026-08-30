@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:15432}/${DB_NAME:restaurant}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:postgres123}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:clave-secreta-restaurante-2024-muy-larga-y-segura-para-desarrollo-local}
+
+logging:
+  level:
+    com.restaurant: DEBUG

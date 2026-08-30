@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "RestauranteChat",
+    "slug": "restaurant-chat",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#1a1a2e"
+    },
+    "android": {
+      "softwareKeyboardLayoutMode": "pan",
+      "usesCleartextTraffic": true,
+      "adaptiveIcon": {
+        "backgroundColor": "#1a1a2e"
+      },
+      "navigationBar": {
+        "backgroundColor": "#0f0f1a",
+        "barStyle": "light-content"
+      }
+    },
+    "androidNavigationBar": {
+      "backgroundColor": "#0f0f1a",
+      "barStyle": "light-content"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-asset",
+      "expo-font"
+    ]
+  }
+}
